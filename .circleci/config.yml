@@ -19,22 +19,6 @@ jobs:
             git submodule sync --recursive
             git submodule update --init --recursive
       - run:
-          name: Setup Python Virtualenv
-          command: |
-            python3 -m venv env
-      - run:
-          name: Checkout PyTorch
-          command: |
-            cd ..
-            git clone https://github.com/pytorch/pytorch.git --recursive
-      - run:
-          name: Build PyTorch
-          command: |
-            source env/bin/activate
-            cd ../pytorch
-            pip install -r requirements.txt
-            BUILD_BINARY=OFF BUILD_TEST=0 BUILD_CAFFE2_OPS=0 python setup.py install
-      - run:
           name: Build and test pytorch/tvm
           command: |
             source env/bin/activate
